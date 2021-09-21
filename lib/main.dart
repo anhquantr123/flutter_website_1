@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_website_1/constants/constants.dart';
+import 'package:flutter_website_1/constants/string_value.dart';
 import 'package:flutter_website_1/screen/home/home_screen.dart';
 
 void main() {
@@ -12,11 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter web food ',
+        title: titleWeb,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primaryColor: primaryColor),
         home: HomeScreen());
   }
 }
