@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_website_1/constants/constants.dart';
+import 'package:flutter_website_1/constants/screen_export.dart';
 import 'package:flutter_website_1/constants/string_value.dart';
 import 'package:flutter_website_1/constants/widget_export.dart';
 import 'package:flutter_website_1/controller/select_menu.dart';
@@ -40,54 +41,61 @@ class _HomeScreenState extends State<HomeScreen>
     Size size = MediaQuery.of(context).size;
 
     return ChangeNotifierProvider(
-      create: (context) => SelectMenu(),
-      builder: (context, child) {
-        var currenMenu = Provider.of<SelectMenu>(context, listen: true).currentMenu;
-      return Scaffold(
-          backgroundColor: backgroudPageColor,
-          body: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/images/background4.jpg"),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Logo(),
-                        if (Responsive.isDesktop(context) ||
-                            Responsive.isTablet(context))
-                          const HeaderMenu()
-                        else
-                          const SizedBox(
-                            width: 10,
-                          )
+        create: (context) => SelectMenu(),
+        builder: (context, child) {
+          var currentMenu =
+              Provider.of<SelectMenu>(context, listen: true).currentMenu;
+          print(currentMenu);
+          return Scaffold(
+              backgroundColor: backgroudPageColor,
+              body: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/images/background4.jpg"),
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Logo(),
+                            if (Responsive.isDesktop(context) ||
+                                Responsive.isTablet(context))
+                              const HeaderMenu()
+                            else
+                              const SizedBox(
+                                width: 10,
+                              )
+                          ],
+                        ),
+                        currentMenu == 0
+                            ? SizedBox(
+                                width: size.width,
+                                height: size.height - 100,
+                                child: Center(
+                                  child: AnimatedBuilder(
+                                      animation: animation,
+                                      builder: (context, child) => Text(
+                                            titleHomeInfo.substring(
+                                                    0, animation.value) +
+                                                "_",
+                                            style: const TextStyle(
+                                                fontSize: 36,
+                                                color: whiteColor),
+                                          )),
+                                ),
+                              )
+                            : const Body(),
                       ],
                     ),
-                    Container(
-                      width: size.width,
-                      height: size.height - 100,
-                      child: Center(
-                        child: AnimatedBuilder(
-                            animation: animation,
-                            builder: (context, child) => Text(
-                                  titleHomeInfo.substring(0, animation.value) +
-                                      "_",
-                                  style:
-                                      TextStyle(fontSize: 36, color: whiteColor),
-                                )),
-                      ),
-                    ),
-                  ],
-                ),
-              )));
-    );
+                  )));
+        });
   }
 }
