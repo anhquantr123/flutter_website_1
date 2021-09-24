@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_website_1/constants/constants.dart';
 import 'package:flutter_website_1/constants/string_value.dart';
 import 'package:flutter_website_1/constants/widget_export.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_website_1/controller/select_menu.dart';
+import 'package:flutter_website_1/responsive.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -20,9 +22,10 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 3));
+        AnimationController(vsync: this, duration: const Duration(seconds: 5));
     animation =
         IntTween(begin: 0, end: titleHomeInfo.length).animate(controller);
+
     controller.repeat(reverse: true);
   }
 
@@ -34,41 +37,57 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: backgroudPageColor,
-        body: Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/images/background4.jpg"),
+    Size size = MediaQuery.of(context).size;
+
+    return ChangeNotifierProvider(
+      create: (context) => SelectMenu(),
+      builder: (context, child) {
+        var currenMenu = Provider.of<SelectMenu>(context, listen: true).currentMenu;
+      return Scaffold(
+          backgroundColor: backgroudPageColor,
+          body: Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/images/background4.jpg"),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Alert(
-                              context: context,
-                              title: "Thông Báo ",
-                              desc: "Bạn Vừa ckick vào trang chủ")
-                          .show();
-                    },
-                    child: Container(
-                        height: 60,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            color: whiteColor,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: const Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage("assets/images/logo.png"))),
-                  )
-                ],
-              ),
-            )));
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Logo(),
+                        if (Responsive.isDesktop(context) ||
+                            Responsive.isTablet(context))
+                          const HeaderMenu()
+                        else
+                          const SizedBox(
+                            width: 10,
+                          )
+                      ],
+                    ),
+                    Container(
+                      width: size.width,
+                      height: size.height - 100,
+                      child: Center(
+                        child: AnimatedBuilder(
+                            animation: animation,
+                            builder: (context, child) => Text(
+                                  titleHomeInfo.substring(0, animation.value) +
+                                      "_",
+                                  style:
+                                      TextStyle(fontSize: 36, color: whiteColor),
+                                )),
+                      ),
+                    ),
+                  ],
+                ),
+              )));
+    );
   }
 }
