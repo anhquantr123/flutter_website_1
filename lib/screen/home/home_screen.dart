@@ -5,6 +5,7 @@ import 'package:flutter_website_1/constants/string_value.dart';
 import 'package:flutter_website_1/constants/widget_export.dart';
 import 'package:flutter_website_1/controller/select_menu.dart';
 import 'package:flutter_website_1/responsive.dart';
+import 'package:flutter_website_1/screen/mobile/mobile_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
         builder: (context, child) {
           var currentMenu =
               Provider.of<SelectMenu>(context, listen: true).currentMenu;
-          print(currentMenu);
+
           return Scaffold(
               backgroundColor: backgroudPageColor,
               body: Container(
@@ -57,45 +58,39 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                   ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Logo(),
-                            if (Responsive.isDesktop(context) ||
-                                Responsive.isTablet(context))
-                              const HeaderMenu()
-                            else
-                              const SizedBox(
-                                width: 10,
-                              )
-                          ],
-                        ),
-                        currentMenu == 0
-                            ? SizedBox(
-                                width: size.width,
-                                height: size.height - 100,
-                                child: Center(
-                                  child: AnimatedBuilder(
-                                      animation: animation,
-                                      builder: (context, child) => Text(
-                                            titleHomeInfo.substring(
-                                                    0, animation.value) +
-                                                "_",
-                                            style: const TextStyle(
-                                                fontSize: 36,
-                                                color: whiteColor),
-                                          )),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      child: (Responsive.isDesktop(context) ||
+                              Responsive.isTablet(context)
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [Logo(), HeaderMenu()],
                                 ),
-                              )
-                            : const Body(),
-                      ],
-                    ),
-                  )));
+                                currentMenu == 0
+                                    ? SizedBox(
+                                        width: size.width,
+                                        height: 460,
+                                        child: Center(
+                                          child: AnimatedBuilder(
+                                              animation: animation,
+                                              builder: (context, child) => Text(
+                                                    titleHomeInfo.substring(0,
+                                                            animation.value) +
+                                                        "_",
+                                                    style: const TextStyle(
+                                                        fontSize: 36,
+                                                        color: whiteColor),
+                                                  )),
+                                        ),
+                                      )
+                                    : const Body()
+                              ],
+                            )
+                          : const MobileScreen()))));
         });
   }
 }

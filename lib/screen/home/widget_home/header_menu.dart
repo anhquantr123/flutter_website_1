@@ -11,7 +11,7 @@ class HeaderMenu extends StatefulWidget {
 }
 
 class _HeaderMenuState extends State<HeaderMenu> {
-  List<String> titleMenu = ["Home", "Resume", "Ui-App", "About Me"];
+  List<String> titleMenu = ["Home", "Bang DH", "CMND", "Orther"];
   int selectItem = 0;
 
   @override
