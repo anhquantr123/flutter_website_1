@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_website_1/constants/constants.dart';
 import 'package:flutter_website_1/constants/string_value.dart';
 import 'package:flutter_website_1/controller/select_menu.dart';
+import 'package:flutter_website_1/screen/authen/authen_screen.dart';
 import 'package:flutter_website_1/screen/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           title: titleWeb,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: primaryColor),
-          home: HomeScreen()),
+          home: const AuthenScreen()),
     );
   }
 }

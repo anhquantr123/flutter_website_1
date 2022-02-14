@@ -12,3 +12,10 @@ const fontNormal = FontWeight.normal;
 const drakButton = Color(0xFF372960);
 const colorButtonSelect = Color(0xFF0330FC);
 const colorButtonUnSelect = Color(0xFFFFFFFF);
+
+const textSizeHeading = 16.0;
+const textSizeBody = 14.0;
+const textStyleHeadingBold =
+    TextStyle(fontSize: textSizeHeading, fontWeight: FontWeight.bold);
+const textStyleBodyBold =
+    TextStyle(fontSize: textSizeBody, fontWeight: FontWeight.bold);
