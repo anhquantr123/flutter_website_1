@@ -8,6 +8,8 @@ import 'package:flutter_website_1/responsive.dart';
 import 'package:flutter_website_1/screen/mobile/mobile_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../cmds/cmd.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 
@@ -40,6 +42,11 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    List _listBody = [
+      ResumeScreen(),
+      const CMD(),
+      const CMD(),
+    ];
 
     return ChangeNotifierProvider(
         create: (context) => SelectMenu(),
@@ -87,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                   )),
                                         ),
                                       )
-                                    : const Body()
+                                    : _listBody[currentMenu - 1]
                               ],
                             )
                           : const MobileScreen()))));

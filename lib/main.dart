@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_website_1/constants/constants.dart';
 import 'package:flutter_website_1/constants/string_value.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           title: titleWeb,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(primaryColor: primaryColor),
-          home: const AuthenScreen()),
+          home: HomeScreen()),
     );
   }
 }

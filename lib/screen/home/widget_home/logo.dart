@@ -16,7 +16,7 @@ class Logo extends StatelessWidget {
       },
       child: Container(
           height: 60,
-          width: 150,
+          width: 130,
           decoration: BoxDecoration(
               color: whiteColor, borderRadius: BorderRadius.circular(20)),
           child: const Image(
