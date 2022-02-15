@@ -35,7 +35,7 @@ class _AuthenScreenState extends State<AuthenScreen> {
 
   void _handingButton() {
     var text = _inputTextController.text;
-    if (text != null && text == "23041999") {
+    if (text.isNotEmpty && text == "23041999") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
@@ -55,7 +55,7 @@ class _AuthenScreenState extends State<AuthenScreen> {
             ? const EdgeInsets.symmetric(horizontal: 20, vertical: 10)
             : const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         height: Responsive.isMobile(context)
-            ? size.height * 0.3
+            ? size.height * 0.4
             : size.height * 0.5,
         width:
             Responsive.isMobile(context) ? size.width * 0.8 : size.width * 0.5,
