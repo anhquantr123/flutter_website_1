@@ -39,3 +39,30 @@ const BANG_CU_NHAN = [
     'display': 'end'
   }
 ];
+
+const ORTHER = [
+  {
+    'id': '1',
+    'name': 'Bảng điểm',
+    'image': 'assets/images/bang_diem.png',
+    'display': 'font'
+  },
+  {
+    'id': '2',
+    'name': 'bằng tốt ngiệp trung học phổ thông',
+    'image': 'assets/images/thpt.png',
+    'display': 'end'
+  },
+  {
+    'id': '3',
+    'name': 'bằng tốt ngiệp trung học cơ sở',
+    'image': 'assets/images/thcs.png',
+    'display': 'end'
+  },
+  {
+    'id': '4',
+    'name': 'Chứng nhận hiến máu',
+    'image': 'assets/images/hien_mau.png',
+    'display': 'end'
+  }
+];

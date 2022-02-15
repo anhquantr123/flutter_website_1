@@ -35,7 +35,7 @@ class _AuthenScreenState extends State<AuthenScreen> {
 
   void _handingButton() {
     var text = _inputTextController.text;
-    if (text.isNotEmpty && text == "23041999") {
+    if (text.isNotEmpty && text == "@2223041999") {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {

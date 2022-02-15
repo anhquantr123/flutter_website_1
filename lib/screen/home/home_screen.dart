@@ -6,6 +6,7 @@ import 'package:flutter_website_1/constants/widget_export.dart';
 import 'package:flutter_website_1/controller/select_menu.dart';
 import 'package:flutter_website_1/responsive.dart';
 import 'package:flutter_website_1/screen/mobile/mobile_screen.dart';
+import 'package:flutter_website_1/screen/orther/orther_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../cmds/cmd.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
     List _listBody = [
       ResumeScreen(),
       const CMD(),
-      const CMD(),
+      const OrtherScreen(),
     ];
 
     return ChangeNotifierProvider(

@@ -13,12 +13,15 @@ class _MobileScreenState extends State<MobileScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ListView.separated(
-        itemBuilder: (_, index) => displayCCCD(index, size),
-        separatorBuilder: (_, index) => const SizedBox(
-              height: 10,
-            ),
-        itemCount: CMD_DATA.length);
+    return SizedBox(
+        height: size.height,
+        width: size.width,
+        child: ListView.separated(
+            itemBuilder: (_, index) => displayCCCD(index, size),
+            separatorBuilder: (_, index) => const SizedBox(
+                  height: 10,
+                ),
+            itemCount: CMD_DATA.length));
   }
 
   displayCCCD(int index, Size size) {
